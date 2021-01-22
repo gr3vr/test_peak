@@ -17,8 +17,8 @@ float mapfloat(float x, float in_min, float in_max, float out_min, float out_max
 void setup() {
   Serial.begin(9600);
   //peakDetection.begin(10, 15, 0.5);
-  //peakDetection.begin(8, 3.50, 0.30); ->  funcional
-  //peakDetection.begin(10, 3.50, 0.50);  ->  funcional mejorrr
+  //peakDetection.begin(8, 3.50, 0.30); ->  funciona
+  //peakDetection.begin(10, 3.50, 0.50);  ->  funcional mejor!
   peakDetection.begin(5, 6.50, 0.70);
 }
 
