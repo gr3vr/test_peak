@@ -1,8 +1,10 @@
 #include  <PeakDetection.h>
+#include <SimpleKalmanFilter.h>
 
 #define   pin     34
 
 PeakDetection peakDetection;
+SimpleKalmanFilter kf = SimpleKalmanFilter(0.1, 0.1, 0.01);
 
 long      time_past;
 float     d;
@@ -27,8 +29,11 @@ void loop() {
     d = (float)analogRead(pin);
     d = mapfloat(d, 0.0, 4095.0, 1.0, 3.0);
     d += random(-10, 10)/100.0;
+    Serial.print(d);
+    Serial.print(",");
+    d = kf.updateEstimate(d);
     peakDetection.add(d);
-    last_peak = peak;
+    peakDetection.add(d);
     peak = peakDetection.getPeak();
     //filtered = peakDetection.getFilt();
     Serial.print(2);
